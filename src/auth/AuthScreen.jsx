@@ -39,7 +39,7 @@ export default function AuthScreen() {
     setBusy(true);
     const { error: authError } = await supabase.auth.signInWithOAuth({
       provider: 'google',
-      options: { redirectTo: `${window.location.origin}` },
+      options: { redirectTo: `${window.location.origin}/Nexus-LMS/` },
     });
     if (authError) { setError(authError.message); setBusy(false); }
   }
@@ -50,7 +50,7 @@ export default function AuthScreen() {
     if (!email.trim()) { setError('Masukkan email terlebih dahulu.'); return; }
     setBusy(true);
     const { error: authError } = await supabase.auth.resetPasswordForEmail(email.trim(), {
-      redirectTo: `${window.location.origin}`,
+      redirectTo: `${window.location.origin}/Nexus-LMS/`,
     });
     if (authError) setError(authError.message);
     else setMessage('Jika email terdaftar, tautan reset password akan dikirim ke email tersebut.');
